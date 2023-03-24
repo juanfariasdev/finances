@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html lang="ptBR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Finances</title>
-    <link rel="stylesheet" href="styles/reset.css"/>
-    <link rel="stylesheet" href="styles/global.css"/>
-</head>
-<body>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles/reset.css" />
+    <link rel="stylesheet" href="styles/global.css" />
+  </head>
+  <body>
     <header class="header container">
-        
-            <h1 class="logo"><span>C.Finance</span></h1>
-        
-        <div class="welcome">
-            <img src="https://github.com/juanfariasdev.png" alt="Foto de perfil" />
-            <div class="">
-                <h2>Bem-Vindo, Juan Pablo</h2>
-                <h3>Faça seu controle</h3>
-            </div>
+      <h1 class="logo"><span>C.Finance</span></h1>
+
+      <div class="welcome">
+        <img src="https://github.com/juanfariasdev.png" alt="Foto de perfil" />
+        <div class="">
+          <h2>Bem-Vindo, Juan Pablo</h2>
+          <h3>Faça seu controle</h3>
         </div>
+      </div>
     </header>
 
     <main id="page">
-        opa
+      <aside>
+        <section class="container valoresBlock">
+          <div class="grafico">
+            <canvas id="Valores"></canvas>
+            <div class="info">
+              <h3>Total:</h3>
+              <div>R$ <span id="total"></span></div>
+            </div>
+            <div class="historico">
+              <h3 class="entrada">
+                Entrada: R$<span id="entrada">00.00</span>
+              </h3>
+              <h3 class="saida">Saida: R$<span id="saida">00.00</span></h3>
+            </div>
+          </div>
+        </section>
+        <section class="container">Cadastro</section>
+      </aside>
+      <div>
+        <section class="container">Histórico</section>
+      </div>
     </main>
     <footer class="container">navegacao</footer>
-</body>
+  </body>
+  <script src="scripts/global.js"></script>
 </html>

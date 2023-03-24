@@ -1,66 +1,99 @@
+:root {
+  --color-white: white;
 
-:root{
+  --color-green-400: #49ecd5;
+  --color-green-500: #3cc25c;
 
-    --color-white: white;
-
-    --color-green-400:#49ecd5;
-    --color-green-500: #3cc25c;
-
-    --color-blue-500: #2c325c;
-    --color-blue-900: #1d2041;
+  --color-blue-500: #2c325c;
+  --color-blue-900: #1d2041;
 }
 
 body {
+  display: flex;
+  flex-direction: column;
 
-    display:flex;
-    flex-direction:column;
+  height: 100vh;
 
-    height: 100vh;
-
-    background: var(--color-blue-900);
-    color: var(--color-white);
+  background: var(--color-blue-900);
+  color: var(--color-white);
 }
 
 .container {
-    background: var(--color-blue-500);
-    padding: 20px;
-    
-    box-shadow: 0px 0px 2px black;
+  background: var(--color-blue-500);
+  padding: 20px;
+
+  box-shadow: 0px 0px 2px black;
 }
 
-.logo{
-    font-size: 22px;
-    font-weight: 900;
-    margin-bottom: 15px;
+.logo {
+  font-size: 22px;
+  font-weight: 900;
+  margin-bottom: 15px;
 }
 .logo span {
-    border-bottom: 1px solid var(--color-green-500);
+  border-bottom: 1px solid var(--color-green-500);
 }
 
 .welcome {
-   display:flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .welcome img {
-    height: 50px;
-    width: 50px;
+  height: 50px;
+  width: 50px;
 
-    border: 2px solid var(--color-green-500);
-    border-radius: 100px;
-}
-
-.welcome h2{
-    font-size: 20px;
-    font-weight: bold;
-}
-.welcome h3{
-    margin-top:5px;
-    font-size: 16px;
-    font-weight: 300;
-}
-#page{
-    flex: 1;
+  border: 2px solid var(--color-green-500);
+  border-radius: 100px;
 }
 
+.welcome h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+.welcome h3 {
+  margin-top: 5px;
+  font-size: 16px;
+  font-weight: 300;
+}
+#page {
+  flex: 1;
+}
+
+aside {
+  max-width: 600px;
+}
+
+.valoresBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grafico {
+  position: relative;
+  max-width: 300px;
+}
+
+.grafico .info {
+  position: absolute;
+  top: calc(42%);
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+
+  font-size: 33px;
+}
+.historico {
+  margin-top: 20px;
+  font-size: 25px;
+  display: flex;
+  gap: 20px;
+}
+.entrada {
+  color: #485acd;
+}
+.saida {
+  color: #f05896;
+}
