@@ -1,0 +1,28 @@
+form {
+  font-size: 20px;
+}
+.controlFormInput {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.controlFormInput input {
+  padding: 10px;
+  border-radius: 3px;
+}
+.controlFormSubmit {
+  width: 100%;
+  padding: 15px 0px;
+  margin-top: 20px;
+  border-radius: 3px;
+  background-color: var(--color-green-500);
+  color: white;
+
+  transition: 0.3s all;
+}
+.controlFormSubmit:hover {
+  cursor: pointer;
+  filter: contrast(0.8);
+}
