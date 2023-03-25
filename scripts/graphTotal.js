@@ -1,12 +1,15 @@
-const ctx = document.getElementById("Valores");
+import { totalHistory } from "./form.js";
+
+const graph = document.getElementById("Valores");
+
 const totalDom = document.getElementById("total");
 const entradaDom = document.getElementById("entrada");
 const saidaDom = document.getElementById("saida");
 
-const entrada = 200;
-const saida = 100;
+const entrada = totalHistory.cashInput;
+const saida = totalHistory.cashOutput;
 
-const total = entrada - saida;
+const total = totalHistory.total;
 
 totalDom.innerHTML = total.toFixed(2);
 entradaDom.innerHTML = entrada.toFixed(2);
@@ -26,7 +29,7 @@ const data = {
   ],
 };
 
-new Chart(ctx, {
+new Chart(graph, {
   type: "doughnut",
   data,
   options: {

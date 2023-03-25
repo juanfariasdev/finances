@@ -45,6 +45,10 @@
           <h2 class="title">Cadastro</h2>
           <form>
             <span class="controlFormInput">
+              <label>Titulo</label>
+              <input type="text" placeholder="Titulo da compra" />
+            </span>
+            <span class="controlFormInput">
               <label>Descrição</label>
               <input type="text" placeholder="Descrição da compra" />
             </span>
@@ -63,12 +67,30 @@
         </section>
       </aside>
       <main>
-        <section class="container flex-1 justify-center">
+        <section class="container history">
           <h2 class="title">Histórico</h2>
+          <ul id="history">
+            <li class="item">
+              <div class="info">
+                <h3 class="title">Opa</h3>
+                <h4 class="value">R$ 00.00</h4>
+              </div>
+              <div class="desc">
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Sapiente voluptatum amet quasi. Fuga adipisci perferendis,
+                  velit provident unde dolore, placeat enim voluptate molestiae
+                  impedit ex amet totam modi nihil molestias!
+                </p>
+                <div class="function">funcoes</div>
+              </div>
+            </li>
+          </ul>
         </section>
       </main>
     </div>
     <footer class="container">navegacao</footer>
   </body>
-  <script src="scripts/global.js"></script>
+  <script type="module" src="scripts/form.js"></script>
+  <script type="module" src="scripts/graphTotal.js"></script>
 </html>
