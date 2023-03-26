@@ -1,56 +1,7 @@
-import { observerArray } from "./utils/observer.js";
-
+import { History } from "./class/history.js";
+import { reloadStatus } from "./utils/loadStatus.js";
 const history = document.getElementById("history");
 const form = document.getElementById("formAdd");
-class historyItem {
-  constructor({ id, title, description, amount }) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-    this.amount = amount;
-    this.date = new Date();
-  }
-}
-class historyItemList {
-  constructor() {
-    this.historyItems = [];
-    this.listHistory = document.getElementById("history");
-
-    observerArray(this.historyItems);
-  }
-
-  newHistory({ id, title, description, amount }) {
-    let item = new historyItem({ id, title, description, amount });
-    this.historyItems.push(item);
-    return item;
-  }
-  get allHistoryItems() {
-    return this.listHistory;
-  }
-  get total() {
-    const total = this.historyItems.reduce(
-      (prev, current) => prev + current.amount,
-      0
-    );
-    return total;
-  }
-  get cashInput() {
-    const total = this.historyItems.reduce((prev, current) => {
-      if (current.amount > 0) return prev + current.amount;
-      return prev;
-    }, 0);
-    return total;
-  }
-  get cashOutput() {
-    const total = this.historyItems.reduce((prev, current) => {
-      if (current.amount < 0) return prev + current.amount;
-      return prev;
-    }, 0);
-    return total;
-  }
-}
-
-let History = new historyItemList();
 
 function createHistory(props) {
   const { id, title, description, amount } = props;
@@ -64,13 +15,6 @@ function createHistory(props) {
   const itemTemplate = createItemTemplate(props);
   history.innerHTML += itemTemplate;
 }
-
-createHistory({
-  id: 1,
-  title: "History",
-  description: "History description",
-  amount: 12.0,
-});
 
 form.addEventListener("submit", formSubmit);
 
@@ -101,7 +45,13 @@ function formSubmit(e) {
     id: 1,
     title: title.value,
     description: description.value,
-    amount: parseFloat(amount.value).toFixed(2),
+    amount: parseFloat(amount.value),
+  });
+
+  console.log({
+    total: History.total,
+    cashInput: History.cashInput,
+    cashOutput: History.cashOutput,
   });
 }
 
@@ -122,8 +72,4 @@ function createItemTemplate({ id, title, description, amount }) {
 
   return historyItem;
 }
-export const totalHistory = {
-  total: History.total,
-  cashInput: History.cashInput,
-  cashOutput: History.cashOutput,
-};
+reloadStatus();

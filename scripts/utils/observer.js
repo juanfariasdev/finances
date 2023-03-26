@@ -1,5 +1,7 @@
 // import { reloadInfoStatus } from "../graphTotal.js";
 
+import { reloadStatus } from "./loadStatus.js";
+
 export function observerArray(arr) {
   addObserverMethods("push", arr, alterouEstadoPush);
   addObserverMethods("pop", arr, alterouEstadoPop);
@@ -8,12 +10,14 @@ export function observerArray(arr) {
 // recebe o novo estado do array
 function alterouEstadoPush(state) {
   console.log('Alterou o estado via "push".');
+  reloadStatus();
   //   console.log("Novo estado: ", state);
 }
 
 // recebe o novo estado do array
 function alterouEstadoPop(state) {
   console.log('Alterou o estado via "pop".');
+  reloadStatus();
   //   console.log("Novo estado: ", state);
 }
 
