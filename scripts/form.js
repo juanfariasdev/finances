@@ -91,7 +91,7 @@ export function removeItemByID(e) {
 
 createHistory({
   id: uuidv4(),
-  title: "title.value",
-  description: "description.value",
+  title: "Teste Value",
+  description: "Descrição Válida",
   amount: parseFloat(12),
 });
