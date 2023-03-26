@@ -56,6 +56,7 @@ function formSubmit(e) {
     description: description.value,
     amount: parseFloat(amount.value),
   });
+  form.reset();
 }
 
 function createItemTemplate({ id, title, description, amount }) {
@@ -63,7 +64,7 @@ function createItemTemplate({ id, title, description, amount }) {
       <li class="item" data-id="${id}">
       <div class="info">
         <h3 class="title">${title}</h3>
-        <h4 class="value">R$ ${amount}</h4>
+        <h4 class="value">R$ ${amount.toFixed(2)}</h4>
       </div>
       <div class="desc">
         <p>
