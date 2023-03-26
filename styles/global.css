@@ -133,7 +133,7 @@ main {
   flex-wrap: wrap;
   gap: 10px;
   max-height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 @media (min-width: 1220px) {
   .item {

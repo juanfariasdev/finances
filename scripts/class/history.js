@@ -22,6 +22,10 @@ class historyItemList {
     this.historyItems.push(item);
     return item;
   }
+  removeItemByID(id) {
+    const list = this.historyItems.filter((item) => item.id !== id);
+    this.historyItems = list;
+  }
   get allHistoryItems() {
     return this.listHistory;
   }

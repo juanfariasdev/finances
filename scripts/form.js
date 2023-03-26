@@ -15,6 +15,14 @@ function createHistory(props) {
 
   const itemTemplate = createItemTemplate(props);
   history.innerHTML += itemTemplate;
+
+  const btns = document.querySelectorAll(".remove");
+  btns.forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      removeItemByID(event);
+    });
+  });
+  reloadStatus();
 }
 
 form.addEventListener("submit", formSubmit);
@@ -61,10 +69,28 @@ function createItemTemplate({ id, title, description, amount }) {
         <p>
           ${description}
         </p>
-        <div class="function">funcoes</div>
+        <div class="function"><button class="remove">remove</button></div>
       </div>
     </li>`;
 
   return historyItem;
 }
-reloadStatus();
+
+export function removeItemByID(e) {
+  if (confirm("deseja mesmo remover?")) {
+    const item = e.target.parentElement.parentElement.parentElement;
+    const valueId = item.attributes["data-id"].value;
+    console.log(valueId);
+
+    History.removeItemByID(valueId);
+    item.remove();
+  }
+  reloadStatus();
+}
+
+createHistory({
+  id: uuidv4(),
+  title: "title.value",
+  description: "description.value",
+  amount: parseFloat(12),
+});
