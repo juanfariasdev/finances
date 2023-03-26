@@ -43,19 +43,29 @@
         </section>
         <section class="container flex-1 justify-center">
           <h2 class="title">Cadastro</h2>
-          <form>
+          <form id="formAdd">
             <span class="controlFormInput">
               <label>Titulo</label>
-              <input type="text" placeholder="Titulo da compra" />
+              <input type="text" name="title" placeholder="Titulo da compra" />
             </span>
             <span class="controlFormInput">
               <label>Descrição</label>
-              <input type="text" placeholder="Descrição da compra" />
+              <input
+                type="text"
+                name="description"
+                placeholder="Descrição da compra"
+              />
             </span>
 
             <span class="controlFormInput">
               <label>Valor</label>
-              <input type="number" placeholder="R$ 00.00" />
+              <input
+                type="number"
+                step="0.01"
+                name="amount"
+                placeholder="R$ 00.00"
+                lang="ptBR"
+              />
               <p>
                 Para <span class="saida">saidas</span>, coloque o sinal
                 (<b>-</b>)
@@ -91,6 +101,7 @@
     </div>
     <footer class="container">navegacao</footer>
   </body>
+  <!-- <script type="module" src="scripts/utils/observer.js"></script> -->
   <script type="module" src="scripts/form.js"></script>
   <script type="module" src="scripts/graphTotal.js"></script>
 </html>

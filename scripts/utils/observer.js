@@ -1,3 +1,5 @@
+// import { reloadInfoStatus } from "../graphTotal.js";
+
 export function observerArray(arr) {
   addObserverMethods("push", arr, alterouEstadoPush);
   addObserverMethods("pop", arr, alterouEstadoPop);
