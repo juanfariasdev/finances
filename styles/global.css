@@ -178,6 +178,18 @@ main {
   justify-content: center;
   align-items: center;
 }
+.item .remove {
+  font-size: 20px;
+  background-color: var(--color-green-500);
+  color: var(--color-white);
+  padding: 5px 10px;
+  border-radius: 3px;
+  transition: 0.3s all;
+}
+.item .remove:hover {
+  cursor: pointer;
+  filter: contrast(0.8);
+}
 
 .value {
   font-size: 22px;
