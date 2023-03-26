@@ -2,6 +2,7 @@ import { History } from "./class/history.js";
 import { reloadStatus } from "./utils/loadStatus.js";
 const history = document.getElementById("history");
 const form = document.getElementById("formAdd");
+import { v4 as uuidv4 } from "https://jspm.dev/uuid";
 
 function createHistory(props) {
   const { id, title, description, amount } = props;
@@ -42,16 +43,10 @@ function formSubmit(e) {
     throw new Error("Valor inválido");
   }
   createHistory({
-    id: 1,
+    id: uuidv4(),
     title: title.value,
     description: description.value,
     amount: parseFloat(amount.value),
-  });
-
-  console.log({
-    total: History.total,
-    cashInput: History.cashInput,
-    cashOutput: History.cashOutput,
   });
 }
 
