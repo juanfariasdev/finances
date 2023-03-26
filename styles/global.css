@@ -194,3 +194,14 @@ main {
 .value {
   font-size: 22px;
 }
+
+.credits {
+  font-size: 18px;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+}
+.credits a {
+  color: var(--color-green-500);
+}
