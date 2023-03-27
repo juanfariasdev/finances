@@ -1,3 +1,4 @@
+import { finaceKey } from "../../data/keys.js";
 import { observerArray } from "../utils/observer.js";
 
 class historyItem {
@@ -11,9 +12,9 @@ class historyItem {
 }
 class historyItemList {
   constructor() {
-    const historys = JSON.parse(localStorage.getItem('Finances'));
+    const historys = JSON.parse(localStorage.getItem(finaceKey));
 
-    this.historyItems = historys.length> 0? historys: [];
+    this.historyItems = historys?.length > 0? historys: [];
     this.listHistory = document.getElementById("history");
 
     observerArray(this.historyItems);
@@ -23,14 +24,14 @@ class historyItemList {
     let item = new historyItem({ id, title, description, amount });
     this.historyItems.push(item);
 
-    localStorage.setItem('Finances', JSON.stringify(this.historyItems));
+    localStorage.setItem(finaceKey, JSON.stringify(this.historyItems));
     return item;
   }
   removeItemByID(id) {
     const list = this.historyItems.filter((item) => item.id !== id);
     this.historyItems = list;
 
-    localStorage.setItem('Finances', JSON.stringify(this.historyItems));
+    localStorage.setItem(finaceKey, JSON.stringify(this.historyItems));
   }
   get allHistoryItems() {
     return this.historyItems;
