@@ -89,9 +89,15 @@ export function removeItemByID(e) {
   reloadStatus();
 }
 
-createHistory({
-  id: uuidv4(),
-  title: "Teste Value",
-  description: "Descrição Válida",
-  amount: parseFloat(12),
+History.allHistoryItems.forEach((item)=> {
+const itemTemplate = createItemTemplate(item)
+history.innerHTML += itemTemplate;
+})
+const btns = document.querySelectorAll(".remove");
+btns.forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    removeItemByID(event);
+  });
 });
+reloadStatus();
+

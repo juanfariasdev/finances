@@ -11,7 +11,9 @@ class historyItem {
 }
 class historyItemList {
   constructor() {
-    this.historyItems = [];
+    const historys = JSON.parse(localStorage.getItem('Finances'));
+
+    this.historyItems = historys.length> 0? historys: [];
     this.listHistory = document.getElementById("history");
 
     observerArray(this.historyItems);
@@ -20,14 +22,18 @@ class historyItemList {
   newHistory({ id, title, description, amount }) {
     let item = new historyItem({ id, title, description, amount });
     this.historyItems.push(item);
+
+    localStorage.setItem('Finances', JSON.stringify(this.historyItems));
     return item;
   }
   removeItemByID(id) {
     const list = this.historyItems.filter((item) => item.id !== id);
     this.historyItems = list;
+
+    localStorage.setItem('Finances', JSON.stringify(this.historyItems));
   }
   get allHistoryItems() {
-    return this.listHistory;
+    return this.historyItems;
   }
   get total() {
     const total = this.historyItems.reduce(
