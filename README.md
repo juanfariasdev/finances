@@ -15,7 +15,7 @@ O projeto tem como objetivo a entrega de um trabalho prático de "Programação 
 # Execute o comando git clone para realizar o clone do repositório
 $ git clone https://github.com/juanfariasdev/finances.git
 # Entre na pasta do repositório clonado
-$ cd projeto_cinema
+$ cd finances
 ```
 
 ### **Iniciando o projeto**
