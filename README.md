@@ -7,7 +7,8 @@ Acesso o projeto online [clicando aqui](https://juanfariasdev.github.io/finances
 
 ## 🎯 Sobre o projeto
 
-O projeto tem como objetivo a entrega de um trabalho prático de "Programação II" ultilizando HTML, CSS e Javascript.
+O projeto tem como objetivo treinar HTML, CSS e JavaScript.
+Indo além das funções básicas do JavaScript.
 
 ---
 
@@ -33,3 +34,7 @@ Distribuído sob a licença MIT. Veja [LICENSE](LICENSE) para mais informações
 ## Autor
 
 Desenvolvido por [Juan Pablo Farias](https://juanpablofarias.com/) 👋
+
+## Prints
+
+![Screenshots](screenshots/print.jpg)
