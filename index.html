@@ -1,99 +1,116 @@
 <!DOCTYPE html>
-<html lang="ptBR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Finances</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="styles/reset.css" />
-    <link rel="stylesheet" href="styles/global.css" />
-    <link rel="stylesheet" href="styles/form.css" />
-    <link rel="stylesheet" href="styles/styles.css" />
-  </head>
-  <body>
-    <header class="header container">
-      <h1 class="logo"><span>C.Finance</span></h1>
+<html lang="pt-BR">
 
-      <div class="welcome">
-        <img src="https://github.com/juanfariasdev.png" alt="Foto de perfil" />
-        <div class="">
-          <h2>Bem-Vindo, Juan Pablo</h2>
-          <h3>Faça seu controle</h3>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JF.Finance - Gerenciador de Finanças</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles/reset.css" />
+  <link rel="stylesheet" href="styles/global.css" />
+  <link rel="stylesheet" href="styles/form.css" />
+  <link rel="stylesheet" href="styles/styles.css" />
+</head>
+
+<body>
+  <header class="header container">
+    <h1 class="logo"><span>JF.Finance</span></h1>
+
+    <div class="welcome">
+      <img src="https://github.com/juanfariasdev.png" alt="Foto de perfil" />
+      <div class="welcome-text">
+        <h2>Bem-vindo, Juan Pablo</h2>
+        <h3>Gerencie suas finanças com facilidade</h3>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <div id="page">
-      <aside>
-        <section class="container valoresBlock">
+  <div id="page">
+    <aside>
+      <section class="container valoresBlock">
+        <div class="infos">
           <div class="grafico">
             <canvas id="Valores"></canvas>
             <div class="info">
               <h3>Total:</h3>
-              <div>R$ <span id="total"></span></div>
-            </div>
-            <div class="historico">
-              <h3 class="entrada">
-                Entrada: R$<span id="entrada">00.00</span>
-              </h3>
-              <h3 class="saida">Saida: R$<span id="saida">00.00</span></h3>
+              <div>R$<span id="total">0.00</span></div>
             </div>
           </div>
-        </section>
-        <section class="container flex-1 justify-center">
-          <h2 class="title">Cadastro</h2>
-          <form id="formAdd">
-            <span class="controlFormInput">
-              <label>Titulo</label>
-              <input type="text" name="title" placeholder="Titulo da compra" />
-            </span>
-            <span class="controlFormInput">
-              <label>Descrição</label>
-              <input
-                type="text"
-                name="description"
-                placeholder="Descrição da compra"
-              />
-            </span>
 
-            <span class="controlFormInput">
-              <label>Valor</label>
-              <input
-                type="number"
-                step="0.01"
-                name="amount"
-                placeholder="R$ 00.00"
-                lang="ptBR"
-              />
-              <p>
-                Para <span class="saida">saidas</span>, coloque o sinal
-                (<b>-</b>)
-              </p>
-            </span>
+          <div class="historico">
+            <h3 class="entrada">
+              Entrada: R$<span id="entrada">00.00</span>
+            </h3>
+            <h3 class="saida">
+              Saída: R$<span id="saida">00.00</span>
+            </h3>
+          </div>
+        </div>
+      </section>
 
-            <button class="controlFormSubmit" type="submit">Salvar</button>
-          </form>
-        </section>
-      </aside>
-      <main>
-        <section class="container history">
-          <h2 class="title">Histórico</h2>
-          <ul id="history"></ul>
-        </section>
-      </main>
+      <!-- Formulário de Adicionar Finança -->
+      <section class="container flex-1 justify-center">
+        <h2 class="title">Adicionar Transação</h2>
+        <form id="formAdd">
+          <div class="controlFormInput">
+            <label for="title">Título</label>
+            <input type="text" id="title" name="title" placeholder="Título da compra" required />
+          </div>
+
+          <div class="controlFormInput">
+            <label for="description">Descrição</label>
+            <input type="text" id="description" name="description" placeholder="Descrição da compra" />
+          </div>
+
+          <div class="controlFormInput">
+            <label for="amount">Valor</label>
+            <input type="number" id="amount" step="0.01" name="amount" placeholder="R$ 00.00" lang="ptBR" required />
+            <p class="note">Para <span class="saida">saídas</span>, insira o sinal (<b>-</b>) antes do valor</p>
+          </div>
+
+          <div class="controlFormInput">
+            <label for="category">Categoria</label>
+            <select id="category" name="category" required>
+              <option value="renda">Renda</option>
+              <option value="alimentação">Alimentação</option>
+              <option value="transporte">Transporte</option>
+              <option value="entretenimento">Entretenimento</option>
+            </select>
+          </div>
+
+          <button class="controlFormSubmit" type="submit">Salvar</button>
+        </form>
+      </section>
+    </aside>
+
+    <main>
+      <section class="container history">
+        <h2 class="title">Histórico</h2>
+        <div id="history">
+          <ul id="inflow">
+            <h2 class="title">Entrada</h2>
+          </ul>
+          <ul id="outflow">
+            <h2 class="title">Saída</h2>
+          </ul>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <footer class="container">
+    <div class="credits">
+      <span>
+        Desenvolvido por:
+        <a href="https://juanpablofarias.com" target="_blank">Juan Pablo Farias</a>
+      </span>
     </div>
-    <footer class="container">
-      <div class="credits">
-        <span
-          >Desenvolvido por:
-          <a href="https://juanpablofarias.com" target="_blank"
-            >Juan Pablo Farias</a
-          ></span
-        >
-      </div>
-    </footer>
-  </body>
+  </footer>
+
   <script type="module" src="scripts/form.js"></script>
   <script type="module" src="scripts/graphTotal.js"></script>
+</body>
+
 </html>

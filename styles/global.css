@@ -1,9 +1,7 @@
 :root {
   --color-white: white;
-
   --color-green-400: #49ecd5;
   --color-green-500: #3cc25c;
-
   --color-blue-500: #2c325c;
   --color-blue-800: #1d203d;
   --color-blue-900: #1d2041;
@@ -12,11 +10,10 @@
 body {
   display: flex;
   flex-direction: column;
-
   height: 100vh;
-
   background: var(--color-blue-900);
   color: var(--color-white);
+  font-family: Arial, sans-serif;
 }
 
 .container {
@@ -24,21 +21,19 @@ body {
   padding: 20px;
   border-radius: 3px;
   margin-top: 5px;
-
-  box-shadow: 0px 0px 20px --color-blue-500;
+  box-shadow: 0px 0px 20px var(--color-blue-500);
 }
 
-.container > .title {
+.title {
   font-size: 28px;
+  margin-bottom: 15px;
 }
 
 .logo {
   font-size: 22px;
   font-weight: 900;
   margin-bottom: 15px;
-}
-.logo span {
-  border-bottom: 1px solid var(--color-green-500);
+  border-bottom: 2px solid var(--color-green-500);
 }
 
 .welcome {
@@ -50,39 +45,33 @@ body {
 .welcome img {
   height: 50px;
   width: 50px;
-
+  border-radius: 50%;
   border: 2px solid var(--color-green-500);
-  border-radius: 100px;
 }
 
 .welcome h2 {
   font-size: 20px;
   font-weight: bold;
 }
+
 .welcome h3 {
-  margin-top: 5px;
   font-size: 16px;
   font-weight: 300;
 }
+
 #page {
   flex: 1;
   gap: 5px;
 }
+
 @media (min-width: 768px) {
   #page {
     display: flex;
     justify-content: space-between;
-    flex: 1;
   }
   aside {
     max-width: 400px;
   }
-}
-
-aside {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
 }
 
 .valoresBlock {
@@ -95,53 +84,86 @@ aside {
   position: relative;
   max-width: 300px;
 }
+.infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 
 .grafico .info {
   position: absolute;
-  top: calc(42%);
+  top: 50%;
   left: 50%;
-  text-align: center;
   transform: translate(-50%, -50%);
-
   font-size: 33px;
+  text-align: center;
 }
+
 .historico {
   margin-top: 20px;
   font-size: 25px;
   display: flex;
   gap: 20px;
 }
+#history .title {
+  font-size: 25px;
+  margin-bottom: 0px;
+  font-weight: 500;
+}
+#history .category{
+  margin-top: 5px;
+  font-size: 14px;
+}
+#history .category span{
+  color: #f05896;
+}
 .entrada {
   color: #485acd;
 }
+
 .saida {
   color: #f05896;
 }
 
 main {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
 }
+
 .history {
   flex: 1;
 }
 #history {
   margin-top: 10px;
-  flex: 1;
   display: flex;
-  flex-wrap: wrap;
   gap: 10px;
+  flex-wrap: wrap;
   max-height: 100vh;
   overflow-y: auto;
 }
+
+#history ul{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  min-width: 350px;
+
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 15px 10px;
+  border-radius: 7px;
+}
+
 @media (min-width: 1220px) {
   .item {
-    max-width: 350px;
+    max-width: 100%;
   }
 }
+
 .item {
-  width: 100%;
   background-color: var(--color-blue-800);
   padding: 15px;
   border-radius: 5px;
@@ -153,31 +175,31 @@ main {
   justify-content: space-between;
   gap: 10px;
 }
+
 .item .desc > p {
-  display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 2;
+  display: -webkit-box;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
-  margin: 5px;
 }
 
 .item .title {
   font-size: 22px;
-
-  display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 2;
+  display: -webkit-box;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
-  margin: 5px;
 }
+
 .item .function {
   display: flex;
   gap: 10px;
   justify-content: center;
   align-items: center;
 }
+
 .item .remove {
   font-size: 20px;
   background-color: var(--color-green-500);
@@ -186,6 +208,7 @@ main {
   border-radius: 3px;
   transition: 0.3s all;
 }
+
 .item .remove:hover {
   cursor: pointer;
   filter: contrast(0.8);
@@ -198,10 +221,14 @@ main {
 .credits {
   font-size: 18px;
   text-align: center;
-
-  display: flex;
-  justify-content: center;
 }
+
 .credits a {
-  color: var(--color-green-500);
+  color: #00FF6E;
+  transition: color 0.3s;
+  text-decoration: none;;
+}
+
+.credits a:hover {
+  color: var(--color-green-400);
 }

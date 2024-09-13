@@ -1,57 +1,58 @@
-// import { reloadInfoStatus } from "../graphTotal.js";
-
 import { reloadStatus } from "./loadStatus.js";
 
 export function observerArray(arr) {
-  addObserverMethods("push", arr, alterouEstadoPush);
-  addObserverMethods("pop", arr, alterouEstadoPop);
+  // Observa o método push
+  addObserverMethods("push", arr, handlePushEvent);
+  
+  // Observa o método pop
+  addObserverMethods("pop", arr, handlePopEvent);
 }
 
-// recebe o novo estado do array
-function alterouEstadoPush(state) {
-  console.log('Alterou o estado via "push".');
+// Função de callback para o evento push
+function handlePushEvent(newState) {
+  console.log('O array foi modificado via "push".');
   reloadStatus();
-  //   console.log("Novo estado: ", state);
 }
 
-// recebe o novo estado do array
-function alterouEstadoPop(state) {
-  console.log('Alterou o estado via "pop".');
+// Função de callback para o evento pop
+function handlePopEvent(newState) {
+  console.log('O array foi modificado via "pop".');
   reloadStatus();
-  //   console.log("Novo estado: ", state);
 }
 
 /**
- *
- * @param method método a ser adicionado a funcao observadora
- * @param array array que terá observadores em seu método
- * @param callback funcao a ser chamada após chamada do método de `array`
+ * Função que adiciona observadores aos métodos de array
+ * @param {string} method - Método a ser observado (ex: "push", "pop")
+ * @param {Array} array - Array ao qual o observador será anexado
+ * @param {Function} callback - Função a ser chamada após a alteração no array
  */
 function addObserverMethods(method, array, callback) {
-  // métodos autorizados para observadores
-  const methods = ["pop", "push"];
+  // Lista de métodos permitidos para observação
+  const allowedMethods = ["pop", "push"];
 
-  // verificacao de seguranca
+  // Valida se o parâmetro method é uma string
   if (typeof method !== "string") {
-    throw new TypeError('The "method" param must be string');
+    throw new TypeError('O parâmetro "method" deve ser uma string');
   }
 
-  // verifica se o método é permitido
-  if (!methods.includes(method)) {
-    throw new Error("Method not allowed. Use one of these: " + methods);
+  // Verifica se o método está na lista de métodos permitidos
+  if (!allowedMethods.includes(method)) {
+    throw new Error(`Método não permitido. Use um dos seguintes: ${allowedMethods.join(", ")}`);
   }
 
+  // Define um novo comportamento para o método observado
   Object.defineProperty(array, method, {
     configurable: true,
     enumerable: false,
     writable: true,
     value: function (...args) {
+      // Executa o método original do array
       const result = Array.prototype[method].apply(this, args);
 
-      // passa o valor do novo estado para as funcoes observadoras
+      // Executa o callback com o novo estado do array
       callback(this);
 
-      return result;
+      return result; // Retorna o resultado original do método
     },
   });
 }

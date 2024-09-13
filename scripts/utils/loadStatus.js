@@ -6,13 +6,19 @@ const entradaDom = document.getElementById("entrada");
 const saidaDom = document.getElementById("saida");
 
 export function reloadStatus() {
-  totalDom.innerHTML = History.total;
-  entradaDom.innerHTML = History.cashInput;
-  saidaDom.innerHTML = History.cashOutput;
+  // Calcula os valores uma única vez
+  const total = History.total;
+  const entrada = History.cashInput;
+  const saida = (History.cashOutput * -1).toFixed(2); // Multiplica por -1 para refletir saídas corretamente
 
+  // Atualiza os valores no DOM
+  totalDom.innerHTML = total;
+  entradaDom.innerHTML = entrada;
+  saidaDom.innerHTML = saida;
+
+  // Atualiza o gráfico
   updateGraph({
-    total: History.total,
-    entrada: History.cashInput,
-    saida: History.cashOutput * -1,
+    entrada: parseFloat(entrada),
+    saida: parseFloat(saida),
   });
 }

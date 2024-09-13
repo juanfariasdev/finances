@@ -1,12 +1,11 @@
 const graph = document.getElementById("Valores");
 
 const data = {
-  labels: ["Entrada", "Saida"],
+  labels: ["Entrada", "Saída"],
   datasets: [
     {
       label: "Valor",
-      data: [0, 0],
-
+      data: [0, 0],  // Inicia com 0
       backgroundColor: ["#485ACD", "#F05896"],
       borderWidth: 0,
       cutout: 110,
@@ -27,15 +26,11 @@ const chart = new Chart(graph, {
         },
       },
     },
-    parsing: {
-      key: "nested.value",
-    },
   },
 });
 
-export function updateGraph({ entrada, saida, total }) {
-  chart.data.datasets.forEach((dataset, idx) => {
-    dataset.data = [entrada, saida];
-  });
-  chart.update();
+// Função para atualizar o gráfico
+export function updateGraph({ entrada, saida }) {
+  chart.data.datasets[0].data = [entrada, saida];  // Atualiza os dados diretamente
+  chart.update();  // Atualiza o gráfico
 }

@@ -1,68 +1,91 @@
 import { finaceKey } from "../../data/keys.js";
 import { observerArray } from "../utils/observer.js";
 
-class historyItem {
-  constructor({ id, title, description, amount }) {
+// Classe que define um item do histórico
+class HistoryItem {
+  constructor({ id, title, description, amount, category }) {
     this.id = id;
     this.title = title;
     this.description = description;
     this.amount = amount;
-    this.date = new Date();
+    this.category = category;
+
+    this.date = new Date();  // Data de criação do item
   }
 }
-class historyItemList {
-  constructor() {
-    const historys = JSON.parse(localStorage.getItem(finaceKey));
 
-    this.historyItems = historys?.length > 0? historys: [];
+// Classe que gerencia a lista de itens do histórico
+class HistoryItemList {
+  constructor() {
+    this.historyItems = this.loadFromStorage();
     this.listHistory = document.getElementById("history");
 
     observerArray(this.historyItems);
   }
 
-  newHistory({ id, title, description, amount }) {
-    let item = new historyItem({ id, title, description, amount });
+  // Carrega o histórico do LocalStorage
+  loadFromStorage() {
+    const history = JSON.parse(localStorage.getItem(finaceKey)) || [];
+    return history.length > 0 ? history : [];
+  }
+
+  // Salva o histórico no LocalStorage
+  saveToStorage() {
+    localStorage.setItem(finaceKey, JSON.stringify(this.historyItems));
+  }
+
+  // Adiciona um novo item ao histórico
+  newHistory({ id, title, description, amount, category }) {
+    const item = new HistoryItem({ id, title, description, amount, category });
     this.historyItems.push(item);
 
-    localStorage.setItem(finaceKey, JSON.stringify(this.historyItems));
+    this.saveToStorage();  // Atualiza o LocalStorage
     return item;
   }
-  removeItemByID(id) {
-    const list = this.historyItems.filter((item) => item.id !== id);
-    this.historyItems = list;
 
-    localStorage.setItem(finaceKey, JSON.stringify(this.historyItems));
+  // Remove um item do histórico pelo ID
+  removeItemByID(id) {
+    this.historyItems = this.historyItems.filter(item => item.id !== id);
+    this.saveToStorage();  // Atualiza o LocalStorage
   }
+
+  // Retorna todos os itens do histórico
   get allHistoryItems() {
     return this.historyItems;
   }
-  get total() {
-    const total = this.historyItems.reduce(
-      (prev, current) => prev + current.amount,
-      0
-    );
-    const totalFixed = total.toFixed(2);
-    return totalFixed;
-  }
-  get cashInput() {
-    const total = this.historyItems.reduce((prev, current) => {
-      if (current.amount > 0) {
-        return prev + current.amount;
-      }
-      return prev + 0;
-    }, 0);
 
-    const totalFixed = total.toFixed(2);
-    return totalFixed;
+  // Calcula o valor total (entrada - saída)
+  get total() {
+    return this.calculateTotal().toFixed(2);
   }
+
+  // Calcula o total de entradas
+  get cashInput() {
+    return this.calculateAmountByType('input').toFixed(2);
+  }
+
+  // Calcula o total de saídas
   get cashOutput() {
-    const total = this.historyItems.reduce((prev, current) => {
-      if (current.amount < 0) return prev + current.amount;
-      return prev + 0;
+    return this.calculateAmountByType('output').toFixed(2);
+  }
+
+  // Função privada para calcular o total (interno)
+  calculateTotal() {
+    return this.historyItems.reduce((acc, item) => acc + item.amount, 0);
+  }
+
+  // Função privada para calcular entradas ou saídas
+  calculateAmountByType(type) {
+    return this.historyItems.reduce((acc, item) => {
+      if (type === 'input' && item.amount > 0) {
+        return acc + item.amount;
+      } else if (type === 'output' && item.amount < 0) {
+        return acc + item.amount;
+      }
+      return acc;
     }, 0);
-    const totalFixed = total.toFixed(2);
-    return totalFixed;
   }
 }
 
-export let History = new historyItemList();
+// Exporta uma instância da lista de histórico
+export let History = new HistoryItemList();
